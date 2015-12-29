@@ -53,7 +53,7 @@ class Opauth
     protected $config = array(
         'http_client' => "Opauth\\Opauth\\HttpClient\\Curl",
         'callback' => 'callback',
-        'path' => '/auth/'
+        'base_url' => '/auth/'
     );
 
     /**
@@ -149,7 +149,7 @@ class Opauth
     protected function setParser(ParserInterface $parser = null)
     {
         if (!$parser) {
-            $parser = new Request\Parser($this->config('path'));
+            $parser = new Request\Parser($this->config('base_url'));
         }
         $this->requestParser = $parser;
     }

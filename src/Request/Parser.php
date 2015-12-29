@@ -42,13 +42,31 @@ class Parser implements ParserInterface
     protected $path;
 
     /**
+     * Opauth host
+     *
+     * @var string
+     */
+    protected $base_host;
+
+    /**
      * Set path if '/auth/' isn't the default path, or if application is in a subdirectory
      *
-     * @param string $path
+     * @param string $base_url
      */
-    public function __construct($path = '/')
+    public function __construct($base_url = '/')
     {
-        $this->path = $path;
+        if ($base_url[0] === 0)
+        {
+            $this->path = $base_url;
+            $this->base_host = $this->getHost();
+        } else
+        {
+            $parsed = parse_url($base_url);
+            $this->path = $parsed['path'];
+            $this->base_host = substr($base_url, 0, strpos($base_url, $this->path));
+        }
+
+
         $this->parseUri();
     }
 
@@ -100,6 +118,6 @@ class Parser implements ParserInterface
      */
     public function providerUrl()
     {
-        return $this->getHost() . $this->path . $this->urlname;
+        return $this->base_host . $this->path . $this->urlname;
     }
 }

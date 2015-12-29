@@ -7,7 +7,7 @@ Instantiation of Opauth class accepts a configuration array as input.
 
     require 'vendor/autoload.php';
     $config = array(
-        'path' => '/auth/',
+        'base_url' => '/auth/',
         'http_client' => "Opauth\\Opauth\\HttpClient\\Curl",
         'callback' => 'callback',
         'Strategy' => array(
@@ -18,13 +18,13 @@ Instantiation of Opauth class accepts a configuration array as input.
     $Opauth = new Opauth\Opauth\Opauth($config);
     $response = $Opauth->run();
 
-- ``path``
+- ``base_url``
     - Default: ``/``
-    - Path where Opauth is accessed.
-    - Begins and ends with ``/``
-    - For example, if Opauth is reached at ``http://example.org/auth/``, ``path``
-      should be set to ``/auth/``; if Opauth is reached at ``http://auth.example.org/``,
-      ``path`` should be set to ``/``
+    - URL where Opauth is accessed.
+    - Can be either path starting and ending with ``/`` or full url starting from ``http(s)://`` and ending with ``/``
+    - For example, if Opauth is reached at ``http://example.org/auth/``, ``base_url``
+      should be set to ``/auth/`` or ``http://example.org/auth/``; if Opauth is reached at ``https://auth.example.org/``,
+      ``base_url`` should be set to ``/`` or ``https://auth.example.org/``
 
 - ``http_client``
     - Default: ``Opauth\\Opauth\\HttpClient\\Curl`` for cURL (requires ``php_curl``)

@@ -48,7 +48,7 @@ strategies. Opauth config values are at the root level of the array, while the s
                 'app_secret' => 'your_secret'
             ),
         ),
-        'path' => '/opauth/'
+        'base_url' => '/opauth/'
     );
 
 Check the :doc:`configurations<configurations>` section for all possible configs.
@@ -67,7 +67,7 @@ Next we will create ``opauth.php`` with the following contents::
                 'app_secret' => 'your_secret'
             ),
         ),
-        'path' => '/opauth.php/'
+        'base_url' => '/opauth.php/'
     );
     $Opauth = new Opauth\Opauth\Opauth($config);
     try {
