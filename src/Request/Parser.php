@@ -90,7 +90,7 @@ class Parser implements ParserInterface
      */
     protected function getHost()
     {
-        return (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+        return ((!empty($_SERVER['HTTPS']) && 'off' !== $_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
     }
 
     /**
