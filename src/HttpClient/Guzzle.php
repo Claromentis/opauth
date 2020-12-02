@@ -75,7 +75,7 @@ class Guzzle implements HttpClientInterface
     {
         $client = $this->getClient($url);
         try {
-            $response = $client->post($url, array('form_data' => $data));
+            $response = $client->post($url, array(GuzzleHttp\RequestOptions::JSON => $data));
         } catch (TransferException $e) {
             throw new OpauthException('[Guzzle][TransferException]' . $e->getMessage());
         }
